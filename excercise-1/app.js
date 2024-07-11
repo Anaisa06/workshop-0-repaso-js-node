@@ -49,12 +49,12 @@ class TaskManager {
         this.renderTasks();
     }
 
-    // updateTask(id){
-    //     const task = this.tasks.find(task => task.id !== id);
-    //     if (task) {
-    //         task.description =
-    //     }
-    // }
+    updateTask(id,description) {
+        const task = this.tasks.find(task => task.id === id);
+        task.description = description;
+        this.saveTasks();
+        this.renderTasks();
+    }
 
     renderTasks() {
         const taskList = document.getElementById('task-list');
@@ -72,14 +72,20 @@ class TaskManager {
                 this.deleteTask(task.id);
             });
 
-            // const updateButton = document.createElement('button');
-            // updateButton.textContent = 'Editar';
-            // updateButton.addEventListener('click', e => {
-            //     e.stopPropagation();
+            const updateButton = document.createElement('button');
+            updateButton.textContent = 'Editar';
+            updateButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const input = document.createElement('input');
+                const saveButton = document.createElement('button');
+                saveButton.textContent = 'Guardar';
+                saveButton.addEventListener('click', () => {
+                    this.updateTask(task.id, input.value);
+                });
 
-            // })
-
-            item.appendChild(deleteButton);
+                item.append(input, saveButton);
+            })
+            item.append(updateButton, deleteButton);            
             taskList.appendChild(item);
         });
     }
