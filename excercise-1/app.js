@@ -13,7 +13,7 @@ class Task {
 class TaskManager {
     constructor() {
         this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        this.loadTasks();
+        this.renderTasks();
     }
 
     addTask(description) {
@@ -43,10 +43,6 @@ class TaskManager {
 
     saveTasks() {
         localStorage.setItem('tasks', JSON.stringify(this.tasks));
-    }
-
-    loadTasks() {
-        this.renderTasks();
     }
 
     updateTask(id,description) {

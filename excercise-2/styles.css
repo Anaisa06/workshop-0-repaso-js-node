@@ -1,0 +1,11 @@
+
+button {
+    background-color:rgb(250, 248, 248);
+    padding: 0.2rem;
+    margin: 0.3rem;
+    border-radius: 5px;
+}
+
+.note-important > button:first-child{
+    background-color: rgb(140, 209, 140);
+}
