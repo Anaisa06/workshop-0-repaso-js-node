@@ -11,6 +11,10 @@ input {
     border-radius: 5px;
 }
 
-.note-important > button:first-child{
-    background-color: rgb(140, 209, 140);
+li {
+    color: rgb(26, 92, 26);
+}
+
+.completed {
+    color: rgb(15, 15, 15);
 }
