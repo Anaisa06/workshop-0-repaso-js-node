@@ -12,6 +12,7 @@ const fetchApi = async (url) => {
 
 const displayProducts = async (products) => {
     
+
     const $productsContainer = document.getElementById('products-container');
     products.forEach(product => {        
         const $card = document.createElement('DIV');
@@ -33,6 +34,7 @@ const filterProducts = async () => {
 
     const categories = await fetchApi('https://api.escuelajs.co/api/v1/categories');
     const products = await fetchApi('https://api.escuelajs.co/api/v1/products');
+
     const $form = document.getElementById('filter-form');
     const $categorySelect = document.getElementById('select-category');
     const $searchButton = document.createElement('BUTTON');
@@ -48,13 +50,15 @@ const filterProducts = async () => {
 
     $form.appendChild($categorySelect);  
     $form.appendChild($searchButton);
+    displayProducts(products);
     
     $searchButton.addEventListener('click', event => {
         event.preventDefault();
-        if ($categorySelect.value !== 'all') { 
-            let $filteredProducts = products.filter(product => product.category.name === $categorySelect.value);
-            displayProducts($filteredProducts);
-            
+        const $cards =  document.getElementById('products-container');
+        $cards.innerHTML = '';
+        if ($categorySelect.value !== 'all') {           
+            const $filteredProducts = products.filter(product => product.category.name === $categorySelect.value);
+            displayProducts($filteredProducts);                        
         } else {
             displayProducts(products);
         }
